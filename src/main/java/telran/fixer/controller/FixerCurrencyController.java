@@ -3,6 +3,7 @@ package telran.fixer.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import org.springframework.http.HttpHeaders;
@@ -29,14 +30,11 @@ public class FixerCurrencyController {
 		System.out.println("Amount");
 		int amount = Integer.parseInt(br.readLine());
 		System.out.println("Do you need exchange rates for today? If yes, type 'Y', If no type 'N'");
-		String answer = br.readLine();
-		String dateString = null;
-		if (answer.equals("Y")) {
-			dateString = LocalDate.now().toString();
-		}
-		if (answer.equals("N")) {
-			System.out.println("Specify a date (format YYYY-MM-DD)");
+		String answer = br.readLine().toLowerCase();
+		String dateString = LocalDate.now().toString();;
 
+		if (answer.equals("n")) {
+			System.out.println("Specify a date (format YYYY-MM-DD)");
 			dateString = br.readLine();
 		}
 
@@ -49,7 +47,7 @@ public class FixerCurrencyController {
 				ResponseCurrencyDto.class);
 
 		System.out.println(amount + " " + fromCurrency + " -> " + responseEntity.getBody().getResult() + " "
-				+ toCurrency + " " + dateString + " (Rate -> " + responseEntity.getBody().getInfo().get("rate") + ")");
+				+ toCurrency + " " + " (Rate "+"("+responseEntity.getBody().getDate()+") -> " + responseEntity.getBody().getInfo().get("rate") + " )");
 	}
 
 }

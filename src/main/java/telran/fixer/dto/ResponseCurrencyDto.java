@@ -8,5 +8,6 @@ import lombok.Getter;
 public class ResponseCurrencyDto {
 	double result;
 	Map<String, Double> info;
+	String date;
 
 }
