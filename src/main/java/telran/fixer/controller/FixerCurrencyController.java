@@ -24,7 +24,7 @@ public class FixerCurrencyController {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("From currency");
-		String fromCurrency = br.readLine();
+		String fromCurrency = br.readLine().trim();//trim  удалит начальный и конечный пробел
 		System.out.println("To currency");
 		String toCurrency = br.readLine();
 		System.out.println("Amount");
